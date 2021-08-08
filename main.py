@@ -23,22 +23,20 @@ playerX = 500
 playerY = 800
 pygame.display.set_caption('Plane Simulator')
 #player display function
-def player(playerX,playerY):
+def player(playerX , playerY):
     scaled = pygame.transform.scale(playerImg, (150, 150))
     screen.blit(scaled, (playerX, playerY))
-#main loop
+ # main loop
 running = True
 while running:
-    player(playerX,playerY)
-   # if playerY <840:
-   #        playerY -= 0.3
+    player(playerX , playerY)
     for event in pygame.event.get():
         print(event)
         if event.type == QUIT:
             running = False
-        if playerY <840:
-            playerY -= 0.3
-
+        if event.type == KEYDOWN:
+            if event.key == pygame.K_UP:
+                playerY -= 0.3
     pygame.display.update()
 
 
