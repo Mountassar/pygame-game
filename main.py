@@ -31,12 +31,11 @@ running = True
 while running:
     player(playerX , playerY)
     for event in pygame.event.get():
-        print(event)
         if event.type == QUIT:
             running = False
         if event.type == KEYDOWN:
             if event.key == pygame.K_UP:
-                playerY -= 0.3
+                playerY -= 3
     pygame.display.update()
 
 
