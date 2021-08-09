@@ -1,5 +1,4 @@
-import pygame
-#initialize pygame
+import pygame, sys
 import pygame.display
 from pygame.locals import (
     K_UP,
@@ -10,33 +9,38 @@ from pygame.locals import (
     KEYDOWN,
     QUIT,
 )
-# Define constants for the screen width and height
-SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 1000
 
-x = pygame.init()
-#create screen
+pygame.init()
+# create screen
 screen = pygame.display.set_mode((1000,1000))
-#player
-playerImg = pygame.image.load('images/pp.png')
+# player
 playerX = 500
 playerY = 800
 pygame.display.set_caption('Plane Simulator')
+playerImg = pygame.image.load('images/pp.png')
 #player display function
+#create second surface
+surface_2 = pygame.Surface([playerX,playerY])
 def player(playerX , playerY):
-    scaled = pygame.transform.scale(playerImg, (150, 150))
-    screen.blit(scaled, (playerX, playerY))
+
+    scaled = pygame.transform.scale(playerImg, (500, 400))
+    screen.blit (scaled, (playerX, playerY))
+clock = pygame.time.Clock()
  # main loop
 running = True
 while running:
     player(playerX , playerY)
+    screen.blit(surface_2, (playerX,playerY))
+
     for event in pygame.event.get():
+        print(id(event.type))
         if event.type == QUIT:
             running = False
+
         if event.type == KEYDOWN:
-            if event.key == pygame.K_UP:
-                playerY -= 3
-    pygame.display.update()
+            if event.key == K_UP:
+                playerY -= 10
+                player(playerX, playerY)
 
 
 
